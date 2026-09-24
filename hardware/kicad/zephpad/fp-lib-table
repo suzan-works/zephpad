@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "zephpad")(type "KiCad")(uri "${KIPRJMOD}/zephpad.pretty")(options "")(descr ""))
+)

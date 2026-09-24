@@ -1,0 +1,17 @@
+# Local editor preferences and footprint cache
+*.kicad_prl
+fp-info-cache
+
+# KiCad automatic backups, autosaves, and lock files
+*-backups/
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*.sch-bak
+*.brd-bak
+*.pro-bak
+_autosave-*
+~*.lck
+
+# Generated fabrication outputs
+**/production/
+fabrication-toolkit-options.json

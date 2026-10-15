@@ -26,7 +26,7 @@
         compatible = "gpio-qdec";
         gpios = <&gpio1 13 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>,
                 <&gpio1 14 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
-        /* EC12E2420801: 24 detents / 24 pulses -> four AB edges per detent. */
+        /* EC12E24404A6: 24 detents / 24 pulses -> four AB edges per detent. */
         steps-per-period = <4>;
         zephyr,axis = <INPUT_REL_WHEEL>;
         sample-time-us = <1000>;

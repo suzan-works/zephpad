@@ -1,0 +1,47 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+    zephpad_keys: zephpad_keys {
+        compatible = "gpio-keys";
+        debounce-interval-ms = <15>;
+        zp_sw1: sw1 {
+            gpios = <&gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            zephyr,code = <INPUT_KEY_F1>;
+        };
+        zp_sw2: sw2 {
+            gpios = <&gpio0 3 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            zephyr,code = <INPUT_KEY_F2>;
+        };
+        zp_sw3: sw3 {
+            gpios = <&gpio0 28 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            zephyr,code = <INPUT_KEY_F3>;
+        };
+        zp_sw4: sw4 {
+            gpios = <&gpio0 29 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            zephyr,code = <INPUT_KEY_F4>;
+        };
+    };
+    zephpad_encoder: zephpad_encoder {
+        compatible = "gpio-qdec";
+        gpios = <&gpio1 13 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>,
+                <&gpio1 14 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
+        /* EC12E2420801: 24 detents / 24 pulses -> four AB edges per detent. */
+        steps-per-period = <4>;
+        zephyr,axis = <INPUT_REL_WHEEL>;
+        sample-time-us = <1000>;
+        idle-timeout-ms = <100>;
+    };
+    zephpad_leds {
+        compatible = "gpio-leds";
+        zp_status: status_led {
+            gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+        };
+    };
+};
+
+/* SPI2 shares D8/D9 with the encoder. */
+&spi2 { status = "disabled"; };
+&uart0 { status = "disabled"; };
+&i2c1 { status = "disabled"; };
+&pwm0 { status = "disabled"; };
